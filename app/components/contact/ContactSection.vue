@@ -169,7 +169,7 @@
                                     type="text"
                                     autocomplete="name"
                                     class="h-11 rounded-xl border border-[color:var(--border)] bg-[color:var(--bg)] px-4 text-sm text-[color:var(--text)] outline-none transition focus:border-[color:var(--accent)] focus:ring-2 focus:ring-[color:var(--accent)]/30"
-                                    placeholder="Как к тебе обращаться"
+                                    placeholder="Как к вам обращаться"
                                 />
                             </label>
 
@@ -283,18 +283,18 @@ type ContactLink = { label: string; value: string; href: string };
 const links = {
     telegram: {
         label: "Telegram",
-        value: "@georgiy_dev",
-        href: "https://t.me/georgiy_dev",
+        value: "@kuzgoga",
+        href: "https://t.me/kuzgoga",
     },
     email: {
         label: "Email",
-        value: "georgiy@example.com",
+        value: "derbenev_gi@gkl-kemerovo.ru",
         href: "mailto:georgiy@example.com",
     },
     github: {
         label: "GitHub",
-        value: "github.com/georgiy",
-        href: "https://github.com/georgiy",
+        value: "github.com/kuzgoga",
+        href: "https://github.com/kuzgoga",
     },
 } satisfies Record<string, ContactLink>;
 
