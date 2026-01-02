@@ -1,6 +1,8 @@
 <template>
     <section id="about" class="relative">
-        <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-18">
+        <div
+            class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-18"
+        >
             <div class="grid gap-10 lg:grid-cols-12 lg:items-start">
                 <div class="lg:col-span-7">
                     <p
@@ -19,35 +21,50 @@
                         Делаю продукты, которые приятно поддерживать
                     </h2>
 
-                    <p class="mt-4 max-w-2xl text-pretty text-base text-[color:var(--muted)] sm:text-lg">
-                        Я fullstack‑разработчик из Кемерово. Люблю, когда интерфейс аккуратный,
-                        код понятный, а API предсказуемое. Собираю проекты от идеи до продакшена:
-                        продумываю структуру, режу на компоненты, автоматизирую рутину и оставляю
-                        после себя чистую базу для развития.
+                    <p
+                        class="mt-4 max-w-2xl text-pretty text-base text-[color:var(--muted)] sm:text-lg"
+                    >
+                        Я fullstack‑разработчик из Кемерово. Люблю, когда
+                        интерфейс аккуратный, код понятный, а API предсказуемое.
+                        Собираю проекты от идеи до продакшена: продумываю
+                        структуру, режу на компоненты, автоматизирую рутину и
+                        оставляю после себя чистую базу для развития.
                     </p>
 
                     <div class="mt-6 grid gap-3 sm:grid-cols-2">
                         <div
                             class="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-sm"
                         >
-                            <p class="text-sm font-medium text-[color:var(--text)]">Frontend</p>
+                            <p
+                                class="text-sm font-medium text-[color:var(--text)]"
+                            >
+                                Frontend
+                            </p>
                             <p class="mt-2 text-sm text-[color:var(--muted)]">
-                                Nuxt, Tailwind, компоненты, доступность, микро‑интеракции.
+                                Nuxt, Tailwind, компоненты, доступность,
+                                микро‑интеракции.
                             </p>
                         </div>
 
                         <div
                             class="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-5 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-sm"
                         >
-                            <p class="text-sm font-medium text-[color:var(--text)]">Backend</p>
+                            <p
+                                class="text-sm font-medium text-[color:var(--text)]"
+                            >
+                                Backend
+                            </p>
                             <p class="mt-2 text-sm text-[color:var(--muted)]">
-                                NestJS, архитектура модулей, валидация, авторизация, интеграции.
+                                NestJS, архитектура модулей, валидация,
+                                авторизация, интеграции.
                             </p>
                         </div>
                     </div>
 
                     <div class="mt-8">
-                        <p class="text-xs uppercase tracking-wide text-[color:var(--muted)]">
+                        <p
+                            class="text-xs uppercase tracking-wide text-[color:var(--muted)]"
+                        >
                             Принципы
                         </p>
                         <ul class="mt-3 flex flex-wrap gap-2">
@@ -78,20 +95,31 @@
                         <div class="relative">
                             <div class="flex items-start justify-between gap-4">
                                 <div>
-                                    <p class="text-sm font-medium text-[color:var(--text)]">
-                                        Георгий
+                                    <p
+                                        class="text-sm font-medium text-[color:var(--text)]"
+                                    >
+                                        Профиль
                                     </p>
-                                    <p class="mt-1 text-sm text-[color:var(--muted)]">
-                                        Fullstack developer · TypeScript
+                                    <p
+                                        class="mt-1 text-sm text-[color:var(--muted)]"
+                                    >
+                                        Fullstack разработка · веб‑приложения ·
+                                        TypeScript‑стек
                                     </p>
                                 </div>
 
                                 <div
                                     class="shrink-0 rounded-xl border border-[color:var(--border)] bg-[color:var(--bg)] px-3 py-2"
                                 >
-                                    <p class="text-xs text-[color:var(--muted)]">Локация</p>
-                                    <p class="text-sm font-medium text-[color:var(--text)]">
-                                        Кемерово
+                                    <p
+                                        class="text-xs text-[color:var(--muted)]"
+                                    >
+                                        Формат
+                                    </p>
+                                    <p
+                                        class="text-sm font-medium text-[color:var(--text)]"
+                                    >
+                                        удалённо / проектно
                                     </p>
                                 </div>
                             </div>
@@ -100,29 +128,44 @@
                                 <div
                                     class="rounded-xl border border-[color:var(--border)] bg-[color:var(--bg)] p-4"
                                 >
-                                    <p class="text-xs uppercase tracking-wide text-[color:var(--muted)]">
-                                        Сейчас в фокусе
+                                    <p
+                                        class="text-xs uppercase tracking-wide text-[color:var(--muted)]"
+                                    >
+                                        В работе
                                     </p>
-                                    <p class="mt-2 text-sm text-[color:var(--text)]">
-                                        One‑page портфолио, проекты на Nuxt, удобные админки и REST API.
+                                    <p
+                                        class="mt-2 text-sm text-[color:var(--text)]"
+                                    >
+                                        Поддерживаю текущие проекты, собираю
+                                        новые штуки и постепенно довожу всё до
+                                        состояния «удобно пользоваться и не
+                                        страшно менять».
                                     </p>
                                 </div>
 
                                 <div
                                     class="rounded-xl border border-[color:var(--border)] bg-[color:var(--bg)] p-4"
                                 >
-                                    <p class="text-xs uppercase tracking-wide text-[color:var(--muted)]">
-                                        Люблю
+                                    <p
+                                        class="text-xs uppercase tracking-wide text-[color:var(--muted)]"
+                                    >
+                                        Подход
                                     </p>
-                                    <p class="mt-2 text-sm text-[color:var(--text)]">
-                                        типизацию, понятные интерфейсы, аккуратную типографику и скорость.
+                                    <p
+                                        class="mt-2 text-sm text-[color:var(--text)]"
+                                    >
+                                        Предпочитаю спокойный темп, ясные
+                                        договорённости и код, который читается
+                                        так же легко, как и работает.
                                     </p>
                                 </div>
                             </div>
 
                             <div class="mt-6">
-                                <p class="text-xs uppercase tracking-wide text-[color:var(--muted)]">
-                                    Стек
+                                <p
+                                    class="text-xs uppercase tracking-wide text-[color:var(--muted)]"
+                                >
+                                    Инструменты
                                 </p>
                                 <div class="mt-3 flex flex-wrap gap-2">
                                     <span
@@ -154,7 +197,8 @@
                     </div>
 
                     <p class="mt-3 text-xs text-[color:var(--muted)]">
-                        Фото можно добавить позже — сейчас блок сделан как карточка профиля.
+                        Фото можно добавить позже — сейчас блок сделан как
+                        карточка профиля.
                     </p>
                 </div>
             </div>
@@ -163,7 +207,21 @@
 </template>
 
 <script setup lang="ts">
-const principles = ["KISS", "SOLID", "типизация", "предсказуемый DX", "прагматичность"] as const
+const principles = [
+    "KISS",
+    "SOLID",
+    "типизация",
+    "предсказуемый DX",
+    "прагматичность",
+] as const;
 
-const stack = ["TypeScript", "Nuxt", "Vue", "NestJS", "Tailwind", "PostgreSQL", "Docker"] as const
+const stack = [
+    "TypeScript",
+    "Nuxt",
+    "Vue",
+    "NestJS",
+    "Tailwind",
+    "PostgreSQL",
+    "Docker",
+] as const;
 </script>
