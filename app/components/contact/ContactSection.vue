@@ -202,14 +202,33 @@
                                 class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
                             >
                                 <p class="text-xs text-[color:var(--muted)]">
-                                    Нажимая «Отправить», вы откроете письмо в
-                                    почтовом клиенте.
+                                    Нажимая «Отправить», вы отправляете
+                                    сообщение на сервер.
+                                </p>
+
+                                <p
+                                    v-if="status === 'success'"
+                                    class="text-xs text-[color:var(--muted)]"
+                                >
+                                    Сообщение отправлено. Спасибо — я отвечу вам
+                                    в ближайшее время.
+                                </p>
+
+                                <p
+                                    v-else-if="status === 'error'"
+                                    class="text-xs text-[color:var(--muted)]"
+                                >
+                                    Не удалось отправить сообщение:
+                                    <span class="text-[color:var(--text)]">{{
+                                        errorMessage
+                                    }}</span>
                                 </p>
 
                                 <div class="flex items-center gap-2">
                                     <button
                                         type="button"
-                                        class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border)] bg-[color:var(--bg)] px-4 py-2.5 text-sm font-medium text-[color:var(--text)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[color:var(--surface)] hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)]"
+                                        class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border)] bg-[color:var(--bg)] px-4 py-2.5 text-sm font-medium text-[color:var(--text)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[color:var(--surface)] hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+                                        :disabled="status === 'loading'"
                                         @click="reset"
                                     >
                                         Очистить
@@ -217,9 +236,14 @@
 
                                     <button
                                         type="submit"
-                                        class="inline-flex items-center justify-center rounded-xl bg-[color:var(--accent)] px-4 py-2.5 text-sm font-medium text-[color:var(--accent-foreground)] shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)]"
+                                        class="inline-flex items-center justify-center rounded-xl bg-[color:var(--accent)] px-4 py-2.5 text-sm font-medium text-[color:var(--accent-foreground)] shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+                                        :disabled="status === 'loading'"
                                     >
-                                        Отправить
+                                        {{
+                                            status === "loading"
+                                                ? "Отправка..."
+                                                : "Отправить"
+                                        }}
                                     </button>
                                 </div>
                             </div>
@@ -304,28 +328,58 @@ const form = reactive({
     message: "",
 });
 
+type SubmitStatus = "idle" | "loading" | "success" | "error";
+
+const status = ref<SubmitStatus>("idle");
+const errorMessage = ref<string>("");
+
 function reset() {
     form.name = "";
     form.contact = "";
     form.message = "";
+    status.value = "idle";
+    errorMessage.value = "";
 }
 
-function onSubmit() {
-    const subjectParts = ["Сообщение с сайта"];
-    if (form.name) subjectParts.push(`от ${form.name}`);
+async function onSubmit() {
+    status.value = "loading";
+    errorMessage.value = "";
 
-    const subject = subjectParts.join(" ");
-    const bodyLines = [
-        form.message || "",
-        "",
-        form.name ? `Имя: ${form.name}` : "",
-        form.contact ? `Контакт: ${form.contact}` : "",
-    ].filter(Boolean);
+    try {
+        const res = await $fetch<{
+            ok: boolean;
+            id: string;
+            createdAt: string;
+        }>("/api/contacts", {
+            method: "POST",
+            body: {
+                name: form.name,
+                contact: form.contact,
+                message: form.message,
+                pageUrl:
+                    typeof window !== "undefined" ? window.location.href : null,
+                userAgent:
+                    typeof navigator !== "undefined"
+                        ? navigator.userAgent
+                        : null,
+            },
+        });
 
-    const url = `mailto:${encodeURIComponent("georgiy@example.com")}?subject=${encodeURIComponent(
-        subject,
-    )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+        if (!res?.ok) {
+            status.value = "error";
+            errorMessage.value = "Сервер вернул некорректный ответ.";
+            return;
+        }
 
-    window.location.href = url;
+        status.value = "success";
+        form.message = "";
+    } catch (e: any) {
+        status.value = "error";
+        errorMessage.value =
+            typeof e?.data?.statusMessage === "string" &&
+            e.data.statusMessage.length
+                ? e.data.statusMessage
+                : "Попробуйте ещё раз чуть позже.";
+    }
 }
 </script>
