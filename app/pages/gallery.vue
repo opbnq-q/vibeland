@@ -32,19 +32,113 @@ useHead({
 
 const mediaItems: Media[] = [
   {
-    source:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2JFyVMUGB2hCmAhFXOdCydqzgsCHd2BAzEA&s",
+    source: "/gallery/DSC_5889.JPG",
     type: "image",
   },
   {
+    source: "/gallery/DSC_5890.JPG",
     type: "image",
-    source:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQykzoZeCE0p7LeuyHnLYCdPP2jju9d5PaMeA&s",
   },
   {
-    type: "video",
-    source:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKj2T4DnTvO6BbaQbU9Jahwv8pfXKBldO32w&s",
+    source: "/gallery/DSC_5891.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5892.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5893.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5895.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5896.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5898.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5899.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5900.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5901.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5902.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5903.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5904.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5905.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5907.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5908.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5909.JPG",
+    type: "image",
+  },
+
+  {
+    source: "/gallery/DSC_5910.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5911.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5912.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5915.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5917.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5918.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5919.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5921.JPG",
+    type: "image",
+  },
+  {
+    source: "/gallery/DSC_5922.JPG",
+    type: "image",
   },
 ];
 </script>
