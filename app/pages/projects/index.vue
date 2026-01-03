@@ -87,10 +87,15 @@
         </li>
       </ul>
     </section>
+    <AppButtonPrimary @click="$router.push('/')" class="mt-20"
+      >Назад</AppButtonPrimary
+    >
   </main>
 </template>
 
 <script setup lang="ts">
+import AppButtonPrimary from "~/components/ui/AppButtonPrimary.vue";
+
 useHead({
   title: "Проекты / Блог",
   meta: [
