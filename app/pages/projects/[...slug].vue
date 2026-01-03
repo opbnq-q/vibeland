@@ -29,15 +29,6 @@
 
     <article v-else-if="doc" class="space-y-8">
       <header class="space-y-3">
-        <nav class="text-sm text-[color:var(--muted)]">
-          <NuxtLink
-            to="/projects"
-            class="rounded-md outline-none transition-colors hover:text-[color:var(--text)] focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]"
-          >
-            ← Назад к списку
-          </NuxtLink>
-        </nav>
-
         <h1
           class="text-3xl font-semibold tracking-tight text-[color:var(--text)] sm:text-4xl"
         >

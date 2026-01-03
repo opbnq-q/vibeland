@@ -27,7 +27,7 @@ export default defineNuxtConfig({
       provider: "github",
       owner: "opbnq-q",
       branch: "master",
-      rootDir: "projects",
+      rootDir: "content",
       private: false,
     },
   },

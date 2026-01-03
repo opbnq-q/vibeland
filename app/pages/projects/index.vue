@@ -35,9 +35,7 @@
         v-else-if="!list || list.length === 0"
         class="rounded-xl border border-[color:var(--border)] bg-[color:var(--card)] p-6"
       >
-        <p class="text-[color:var(--muted)]">
-          Пока нет записей. Добавь файлы в <code>content/projects</code>.
-        </p>
+        <p class="text-[color:var(--muted)]">Пока нет записей.</p>
       </div>
 
       <ul v-else class="grid gap-4 sm:grid-cols-2">
@@ -113,6 +111,22 @@ type ProjectListItem = {
   draft?: boolean;
 };
 
+function toDateValue(input: unknown): string | undefined {
+  if (typeof input === "string" && input.trim()) return input;
+  if (input instanceof Date) return input.toISOString();
+  return undefined;
+}
+
+function toTagsValue(input: unknown): string[] | undefined {
+  if (!Array.isArray(input)) return undefined;
+  const tags = input.map((t) => String(t).trim()).filter(Boolean);
+  return tags.length ? tags : undefined;
+}
+
+function isDraftValue(input: unknown): boolean {
+  return input === true;
+}
+
 function formatDate(input: string) {
   const d = new Date(input);
   if (Number.isNaN(d.getTime())) return input;
@@ -128,28 +142,32 @@ const {
   pending,
   error,
 } = await useAsyncData<ProjectListItem[]>("projects:list", async () => {
-  // Nuxt Content v3: query the dedicated `projects` collection (configured in `content.config.ts`).
-  // This ensures we hit the correct endpoint (`/__nuxt_content/projects/query`) instead of the default `content`.
   const items = await queryCollection("projects")
     .select("path", "title", "description", "date", "tags", "draft")
-    .where("draft", "<>", true)
-    .order("date", "DESC")
     .all();
 
-  // Normalize to the shape this page expects.
-  return (items as unknown as Array<Record<string, unknown>>).map((item) => ({
-    path: String(item.path ?? ""),
-    title: typeof item.title === "string" ? item.title : undefined,
-    description:
-      typeof item.description === "string" ? item.description : undefined,
-    date:
-      typeof item.date === "string"
-        ? item.date
-        : item.date instanceof Date
-          ? item.date.toISOString()
-          : undefined,
-    tags: Array.isArray(item.tags) ? (item.tags as string[]) : undefined,
-    draft: typeof item.draft === "boolean" ? item.draft : undefined,
-  }));
+  const normalized = (items as unknown as Array<Record<string, unknown>>)
+    .map((item) => {
+      const path = String(item.path ?? "").trim();
+
+      return {
+        path,
+        title: typeof item.title === "string" ? item.title : undefined,
+        description:
+          typeof item.description === "string" ? item.description : undefined,
+        date: toDateValue(item.date),
+        tags: toTagsValue(item.tags),
+        draft: typeof item.draft === "boolean" ? item.draft : undefined,
+      } satisfies ProjectListItem;
+    })
+    .filter((item) => item.path && !isDraftValue(item.draft));
+
+  normalized.sort((a, b) => {
+    const ad = a.date ?? "";
+    const bd = b.date ?? "";
+    return bd.localeCompare(ad);
+  });
+
+  return normalized;
 });
 </script>

@@ -21,11 +21,14 @@ vibeland\docs\tasks.md
 
 ## 3. Создание мини-раздела с блогом
 - [x] Настроить @nuxt/content и @nuxt/studio для работы с markdown.
-  - Примечание (локальная проблема): в dev может падать с ошибкой `Package import specifier "#nuxt-component-meta/nitro" is not defined ... imported from .nuxt/dev/index.mjs`.
-  - Временный локальный обход: добавить `imports`-алиас `#nuxt-component-meta/nitro` в `node_modules/nuxt-component-meta/package.json`, затем удалить `.nuxt` и перезапустить dev.
-  - Важно: правки в `node_modules` будут перезатираться после `bun install`; в идеале нужно решить через совместимые версии/патч в менеджере пакетов.
+  - Обновлено: Nuxt Content переведён на v3 и заведен `content.config.ts` с коллекцией `projects` (источник: `content/projects/**/*.{md,mdc}`).
+  - Добавлено: schema для frontmatter (`title`, `description`, `date`, `tags`, `draft`) чтобы поля индексировались и были доступны в запросах.
+  - Исправлено: список и детальная страница переведены на `queryCollection("projects")` (Nuxt Content v3), чтобы не было 404 на `/__nuxt_content/content/query`.
+  - Исправлено: Nuxt Studio работает с корнем `content/` (repository `rootDir: "content"`), а для стабилизации поведения при создании документов добавлена корневая запись `content/index.md`.
+  - Исправлено: падение приложения при открытии детальной страницы из-за destructuring slot props (`doc`) — теперь детальная страница самa загружает документ через query и аккуратно обрабатывает pending/error/not found.
 - [x] Создать шаблон для отображения списка проектов (страница списка реализована: `app/pages/projects/index.vue`).
 - [x] Реализовать страницу для отображения контента из markdown (детальная страница реализована: `app/pages/projects/[...slug].vue`).
+- [x] Починить создание документов в Studio: удалена неверная конфигурация Studio (создавала несопоставимый fsPath), синхронизация работает с `content/` через `rootDir: "content"`.
 
 ## 4. Оптимизация и документация
 - [x] Вынести общие стили в `themes` (глобальные стили перенесены в `themes/main.css`, подключение обновлено в `nuxt.config.ts`).
