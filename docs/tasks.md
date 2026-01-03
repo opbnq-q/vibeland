@@ -21,6 +21,9 @@ vibeland\docs\tasks.md
 
 ## 3. Создание мини-раздела с блогом
 - [x] Настроить @nuxt/content и @nuxt/studio для работы с markdown.
+  - Примечание (локальная проблема): в dev может падать с ошибкой `Package import specifier "#nuxt-component-meta/nitro" is not defined ... imported from .nuxt/dev/index.mjs`.
+  - Временный локальный обход: добавить `imports`-алиас `#nuxt-component-meta/nitro` в `node_modules/nuxt-component-meta/package.json`, затем удалить `.nuxt` и перезапустить dev.
+  - Важно: правки в `node_modules` будут перезатираться после `bun install`; в идеале нужно решить через совместимые версии/патч в менеджере пакетов.
 - [x] Создать шаблон для отображения списка проектов (страница списка реализована: `app/pages/projects/index.vue`).
 - [x] Реализовать страницу для отображения контента из markdown (детальная страница реализована: `app/pages/projects/[...slug].vue`).
 

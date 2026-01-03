@@ -14,10 +14,21 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/ui",
     "@nuxt/content",
-    ...(process.env.NODE_ENV === "production" ? ["nuxt-studio"] : []),
+    "nuxt-studio",
   ],
   pages: true,
   devServer: {
     host: "127.0.0.1",
+  },
+  studio: {
+    route: "/admin",
+    repository: {
+      repo: "vibeland",
+      provider: "github",
+      owner: "opbnq-q",
+      branch: "master",
+      rootDir: "projects",
+      private: false,
+    },
   },
 });
