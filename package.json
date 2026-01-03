@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/content": "^2.13.4",
     "@nuxt/eslint": "1.12.1",
     "@nuxt/hints": "1.0.0-alpha.5",
     "@nuxt/image": "2.0.0",
@@ -17,6 +18,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "eslint": "^9.0.0",
     "nuxt": "^4.2.2",
+    "nuxt-studio": "beta",
     "sqlite3": "^5.1.7",
     "typescript": "^5.6.3",
     "vue": "^3.5.26",

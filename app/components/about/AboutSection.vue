@@ -179,19 +179,19 @@
                             </div>
 
                             <div class="mt-7 flex items-center gap-3">
-                                <a
-                                    href="#projects"
+                                <NuxtLink
+                                    to="/projects"
                                     class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border)] bg-[color:var(--bg)] px-4 py-2.5 text-sm font-medium text-[color:var(--text)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[color:var(--surface)] hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)]"
                                 >
                                     Смотреть проекты
-                                </a>
+                                </NuxtLink>
 
-                                <a
-                                    href="#contact"
+                                <NuxtLink
+                                    to="#contact"
                                     class="inline-flex items-center justify-center rounded-xl bg-[color:var(--accent)] px-4 py-2.5 text-sm font-medium text-[color:var(--accent-foreground)] shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)]"
                                 >
                                     Написать
-                                </a>
+                                </NuxtLink>
                             </div>
                         </div>
                     </div>

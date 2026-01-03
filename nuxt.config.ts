@@ -8,7 +8,14 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  modules: ["@nuxt/eslint", "@nuxt/hints", "@nuxt/image", "@nuxt/ui"],
+  modules: [
+    "@nuxt/eslint",
+    "@nuxt/hints",
+    "@nuxt/image",
+    "@nuxt/ui",
+    "@nuxt/content",
+    ...(process.env.NODE_ENV === "production" ? ["nuxt-studio"] : []),
+  ],
   pages: true,
   devServer: {
     host: "127.0.0.1",

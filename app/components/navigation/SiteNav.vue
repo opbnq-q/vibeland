@@ -34,17 +34,17 @@
                 <div class="flex items-center gap-2">
                     <ThemeToggle class="hidden sm:inline-flex" />
 
-                    <a
-                        href="#contact"
+                    <NuxtLink
+                        to="#contact"
                         class="hidden rounded-xl bg-[color:var(--accent)] px-3 py-2 text-sm font-medium text-[color:var(--accent-foreground)] shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)] sm:inline-flex"
                     >
                         Связаться
-                    </a>
+                    </NuxtLink>
 
                     <button
                         type="button"
                         class="inline-flex items-center justify-center rounded-xl border border-[color:var(--border)] bg-[color:var(--surface)] px-3 py-2 text-sm text-[color:var(--text)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[color:var(--bg)] hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)] md:hidden"
-                        :aria-expanded="String(isOpen)"
+                        :aria-expanded="isOpen"
                         aria-controls="mobile-menu"
                         @click="toggle"
                     >
@@ -59,15 +59,15 @@
             <div id="mobile-menu" class="md:hidden" :hidden="!isOpen">
                 <nav class="pb-3 pt-2" aria-label="Мобильная навигация">
                     <div class="grid gap-1">
-                        <a
+                        <NuxtLink
                             v-for="link in links"
                             :key="`m-${link.href}`"
-                            :href="link.href"
+                            :to="link.href"
                             class="rounded-xl px-3 py-2 text-sm text-[color:var(--muted)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[color:var(--surface)] hover:text-[color:var(--text)] hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)]"
                             @click="close"
                         >
                             {{ link.label }}
-                        </a>
+                        </NuxtLink>
 
                         <div
                             class="mt-2 border-t border-[color:var(--border)] pt-2"
@@ -84,12 +84,11 @@
 <script setup lang="ts">
 import ThemeToggle from "../theme/ThemeToggle.vue";
 
-type NavLink = { label: string; href: `#${string}` };
+type NavLink = { label: string; href: string };
 
 const links: NavLink[] = [
     { label: "Главная", href: "#home" },
     { label: "Обо мне", href: "#about" },
-    { label: "Проекты", href: "#projects" },
     { label: "Контакты", href: "#contact" },
 ];
 
