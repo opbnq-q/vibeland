@@ -32,6 +32,8 @@
                 </nav>
 
                 <div class="flex items-center gap-2">
+                    <ThemeToggle class="hidden sm:inline-flex" />
+
                     <a
                         href="#contact"
                         class="hidden rounded-xl bg-[color:var(--accent)] px-3 py-2 text-sm font-medium text-[color:var(--accent-foreground)] shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)] sm:inline-flex"
@@ -66,6 +68,12 @@
                         >
                             {{ link.label }}
                         </a>
+
+                        <div
+                            class="mt-2 border-t border-[color:var(--border)] pt-2"
+                        >
+                            <ThemeToggle class="w-full justify-center" />
+                        </div>
                     </div>
                 </nav>
             </div>
@@ -74,6 +82,8 @@
 </template>
 
 <script setup lang="ts">
+import ThemeToggle from "../theme/ThemeToggle.vue";
+
 type NavLink = { label: string; href: `#${string}` };
 
 const links: NavLink[] = [
