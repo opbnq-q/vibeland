@@ -1,13 +1,13 @@
 <template>
-    <div class="min-h-dvh bg-[color:var(--bg)]">
-        <SiteNav />
+  <div>
+    <SiteNav />
 
-        <main>
-            <HeroSection />
-            <AboutSection />
-            <ContactSection />
-        </main>
-    </div>
+    <main>
+      <HeroSection />
+      <AboutSection />
+      <ContactSection />
+    </main>
+  </div>
 </template>
 
 <script setup lang="ts">
