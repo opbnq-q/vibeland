@@ -196,10 +196,9 @@
                             <div
                                 class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
                             >
-                                <p class="text-xs text-[color:var(--muted)]">
-                                    Нажимая «Отправить», вы отправляете
-                                    сообщение на сервер.
-                                </p>
+                                <p
+                                    class="text-xs text-[color:var(--muted)]"
+                                ></p>
 
                                 <p
                                     v-if="status === 'success'"
