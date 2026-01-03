@@ -97,7 +97,7 @@
 import AppButtonPrimary from "~/components/ui/AppButtonPrimary.vue";
 
 useHead({
-  title: "Проекты / Блог",
+  title: "Сайт Дербенева Георгия",
   meta: [
     {
       name: "description",
