@@ -4,8 +4,8 @@
   >
     <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
       <div class="flex min-h-16 items-center justify-between gap-3 py-2">
-        <a
-          href="#home"
+        <NuxtLink
+          to="/"
           class="inline-flex items-center gap-2 rounded-xl px-2 py-1 text-sm font-semibold tracking-tight text-[color:var(--text)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[color:var(--surface)] hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)]"
         >
           <span
@@ -15,25 +15,43 @@
             G
           </span>
           <span>Георгий</span>
-        </a>
+        </NuxtLink>
 
         <nav
           class="hidden items-center gap-1 md:flex"
           aria-label="Основная навигация"
         >
-          <a
-            v-for="link in links"
-            :key="link.href"
-            :href="link.href"
-            class="rounded-xl px-3 py-2 text-sm text-[color:var(--muted)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[color:var(--surface)] hover:text-[color:var(--text)] hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)]"
-          >
-            {{ link.label }}
-          </a>
+          <template v-for="link in links" :key="link.label">
+            <NuxtLink
+              v-if="link.kind === 'route'"
+              :to="link.to"
+              class="rounded-xl px-3 py-2 text-sm text-[color:var(--muted)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[color:var(--surface)] hover:text-[color:var(--text)] hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)]"
+            >
+              {{ link.label }}
+            </NuxtLink>
+
+            <a
+              v-else
+              :href="link.href"
+              class="rounded-xl px-3 py-2 text-sm text-[color:var(--muted)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[color:var(--surface)] hover:text-[color:var(--text)] hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)]"
+            >
+              {{ link.label }}
+            </a>
+          </template>
         </nav>
 
         <div class="flex items-center gap-2">
+          <a
+            v-if="isHome"
+            href="#contact"
+            class="hidden rounded-xl bg-[color:var(--accent)] px-3 py-2 text-sm font-medium text-[color:var(--accent-foreground)] shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)] sm:inline-flex"
+          >
+            Связаться
+          </a>
+
           <NuxtLink
-            to="#contact"
+            v-else
+            to="/#contact"
             class="hidden rounded-xl bg-[color:var(--accent)] px-3 py-2 text-sm font-medium text-[color:var(--accent-foreground)] shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)] sm:inline-flex"
           >
             Связаться
@@ -55,15 +73,25 @@
       <div id="mobile-menu" class="md:hidden" :hidden="!isOpen">
         <nav class="pb-3 pt-2" aria-label="Мобильная навигация">
           <div class="grid gap-1">
-            <NuxtLink
-              v-for="link in links"
-              :key="`m-${link.href}`"
-              :to="link.href"
-              class="rounded-xl px-3 py-2 text-sm text-[color:var(--muted)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[color:var(--surface)] hover:text-[color:var(--text)] hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)]"
-              @click="close"
-            >
-              {{ link.label }}
-            </NuxtLink>
+            <template v-for="link in links" :key="`m-${link.label}`">
+              <NuxtLink
+                v-if="link.kind === 'route'"
+                :to="link.to"
+                class="rounded-xl px-3 py-2 text-sm text-[color:var(--muted)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[color:var(--surface)] hover:text-[color:var(--text)] hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)]"
+                @click="close"
+              >
+                {{ link.label }}
+              </NuxtLink>
+
+              <a
+                v-else
+                :href="link.href"
+                class="rounded-xl px-3 py-2 text-sm text-[color:var(--muted)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[color:var(--surface)] hover:text-[color:var(--text)] hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--bg)]"
+                @click="close"
+              >
+                {{ link.label }}
+              </a>
+            </template>
           </div>
         </nav>
       </div>
@@ -72,13 +100,30 @@
 </template>
 
 <script setup lang="ts">
-type NavLink = { label: string; href: string };
+type HashLink = { kind: "hash"; label: string; href: `#${string}` };
+type RouteLink = { kind: "route"; label: string; to: `/${string}` | "/" };
+type NavLink = HashLink | RouteLink;
 
-const links: NavLink[] = [
-  { label: "Главная", href: "#home" },
-  { label: "Обо мне", href: "#about" },
-  { label: "Контакты", href: "#contact" },
-];
+const route = useRoute();
+const isHome = computed(() => route.path === "/");
+
+const links = computed<NavLink[]>(() => {
+  const base: NavLink[] = [
+    { kind: "route", label: "Главная", to: "/" },
+    { kind: "route", label: "Галерея", to: "/gallery" },
+    { kind: "route", label: "Проекты", to: "/projects" },
+  ];
+
+  if (isHome.value) {
+    base.splice(1, 0, { kind: "hash", label: "Обо мне", href: "#about" });
+    base.push({ kind: "hash", label: "Контакты", href: "#contact" });
+  } else {
+    base.push({ kind: "route", label: "Обо мне", to: "/#about" });
+    base.push({ kind: "route", label: "Контакты", to: "/#contact" });
+  }
+
+  return base;
+});
 
 const isOpen = ref(false);
 
