@@ -143,11 +143,6 @@
                                 >
                                     Форма
                                 </p>
-                                <p
-                                    class="mt-1 text-sm text-[color:var(--muted)]"
-                                >
-                                    Быстрый черновик — отправится как email.
-                                </p>
                             </div>
                             <span
                                 class="inline-flex items-center rounded-full border border-[color:var(--border)] bg-[color:var(--bg)] px-3 py-1 text-xs text-[color:var(--muted)]"
