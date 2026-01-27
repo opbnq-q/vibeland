@@ -19,13 +19,14 @@
         :aria-label="`Открыть медиа ${index + 1} из ${mediaItems.length}`"
         @click="open(index)"
       >
-        <img
+        <NuxtImg
           v-if="item.type === 'image'"
           :src="item.source"
           alt=""
           class="h-full w-full object-cover transition duration-300 ease-out group-hover:scale-[1.03]"
           loading="lazy"
-          decoding="async"
+          sizes="50vw sm:33vw lg:25vw"
+          format="webp"
         />
 
         <div v-else-if="item.type === 'video'" class="relative h-full w-full">
@@ -111,11 +112,14 @@
             </div>
 
             <div class="flex min-h-0 flex-1 items-center justify-center">
-              <img
+              <NuxtImg
                 v-if="active?.type === 'image'"
                 :src="active.source"
                 alt=""
                 class="max-h-full max-w-full rounded-2xl bg-black/30 object-contain shadow-2xl"
+                format="webp"
+                quality="90"
+                sizes="100vw"
               />
 
               <video
