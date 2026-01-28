@@ -25,8 +25,10 @@
           alt=""
           class="h-full w-full object-cover transition duration-300 ease-out group-hover:scale-[1.03]"
           loading="lazy"
-          sizes="50vw sm:33vw lg:25vw"
+          decoding="async"
           format="webp"
+          sizes="50vw sm:33vw md:25vw lg:20vw"
+          :modifiers="{ rotate: 'undefined' }"
         />
 
         <div v-else-if="item.type === 'video'" class="relative h-full w-full">
@@ -118,8 +120,8 @@
                 alt=""
                 class="max-h-full max-w-full rounded-2xl bg-black/30 object-contain shadow-2xl"
                 format="webp"
-                quality="90"
                 sizes="100vw"
+                :modifiers="{ rotate: 'undefined' }"
               />
 
               <video
