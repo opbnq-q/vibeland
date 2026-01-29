@@ -1,0 +1,38 @@
+.git
+.gitignore
+
+.env
+.env.*
+!.env.example
+
+node_modules
+
+*.DS_Store
+.vscode
+.idea
+*.swp
+
+# Build / coverage artifacts
+dist
+build
+coverage
+server
+
+# Logs & reports
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Temporary files
+temp
+tmp
+.temp
+.tmp
+
+.nyc_output
+
+*.md
